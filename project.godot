@@ -71,10 +71,12 @@ start_game={
 
 [layer_names]
 
-2d_physics/layer_1="Stage"
-2d_physics/layer_2="Player"
-2d_physics/layer_3="Mobs"
-2d_physics/layer_4="Bullets"
+2d_physics/layer_1="Floors"
+2d_physics/layer_2="Walls"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="EnemyMobs"
+2d_physics/layer_5="Bullets"
+2d_physics/layer_6="Spawners"
 
 [rendering]
 

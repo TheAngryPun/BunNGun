@@ -10,6 +10,7 @@ size = Vector2(12, 11)
 [node name="MobBlueBee" instance=ExtResource("1_hehh4")]
 motion_mode = 1
 script = ExtResource("1_7yse4")
+speed = 200
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0, -0.5)

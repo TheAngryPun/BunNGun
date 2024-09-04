@@ -42,6 +42,7 @@ animations = [{
 }]
 
 [node name="MobRedCrawler" instance=ExtResource("1_2ljvh")]
+floor_constant_speed = true
 script = ExtResource("2_iem1g")
 speed = 30
 

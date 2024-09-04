@@ -90,8 +90,9 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 5
+collision_layer = 4
+collision_mask = 11
+floor_constant_speed = true
 script = ExtResource("1_sbiqt")
 friction = 10
 metadata/_edit_lock_ = true
@@ -137,6 +138,10 @@ stream = ExtResource("5_0ipc7")
 pitch_scale = 1.5
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 800
+limit_bottom = 175
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_vertical_offset = -1.0

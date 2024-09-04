@@ -24,8 +24,8 @@ animations = [{
 }]
 
 [node name="Bullet" type="Area2D"]
-collision_layer = 8
-collision_mask = 4
+collision_layer = 16
+collision_mask = 40
 script = ExtResource("1_1yukn")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
