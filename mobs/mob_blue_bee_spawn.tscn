@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3ibiay6atf7y"]
+
+[ext_resource type="PackedScene" uid="uid://kgolits6jtbk" path="res://mobs/mob_spawner.tscn" id="1_y2nb7"]
+[ext_resource type="PackedScene" uid="uid://dbrlcra60q865" path="res://mobs/mob_blue_bee.tscn" id="3_gh1fo"]
+
+[sub_resource type="GDScript" id="GDScript_o5v07"]
+script/source = "class_name MobBlueBeeSpawn extends MobSpawner
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+"
+
+[node name="MobBlueBeeSpawn" instance=ExtResource("1_y2nb7")]
+script = SubResource("GDScript_o5v07")
+mob_scene = ExtResource("3_gh1fo")

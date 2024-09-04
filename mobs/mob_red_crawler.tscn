@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4md7tdu0i5f3"]
+
+[ext_resource type="PackedScene" uid="uid://0h44m27xx7pv" path="res://mobs/mob.tscn" id="1_2ljvh"]
+[ext_resource type="Script" path="res://mobs/mob_red_crawler.gd" id="2_iem1g"]
+[ext_resource type="Texture2D" uid="uid://cvgbk0l7fma7i" path="res://art/Tilemap/tilemap.png" id="3_8iyiw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmpjc"]
+size = Vector2(12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfpad"]
+atlas = ExtResource("3_8iyiw")
+region = Rect2(85, 85, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4i74s"]
+atlas = ExtResource("3_8iyiw")
+region = Rect2(102, 85, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7bde"]
+atlas = ExtResource("3_8iyiw")
+region = Rect2(102, 85, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8oem6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfpad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4i74s")
+}],
+"loop": true,
+"name": &"crawl",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7bde")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="MobRedCrawler" instance=ExtResource("1_2ljvh")]
+script = ExtResource("2_iem1g")
+speed = 30
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_lmpjc")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_8oem6")
+animation = &"crawl"
+frame = 1
+frame_progress = 0.658954
+
+[connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]

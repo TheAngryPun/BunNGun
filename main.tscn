@@ -3,12 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://mcuvsm2hnpvs" path="res://stage.tscn" id="1_2ia3t"]
 [ext_resource type="Script" path="res://main.gd" id="1_23fyh"]
 [ext_resource type="PackedScene" uid="uid://dan2edpgt8kju" path="res://player.tscn" id="2_sjk5i"]
-[ext_resource type="PackedScene" uid="uid://kgolits6jtbk" path="res://mob_spawner.tscn" id="4_gf2sd"]
+[ext_resource type="PackedScene" uid="uid://kgolits6jtbk" path="res://mobs/mob_spawner.tscn" id="4_gf2sd"]
 [ext_resource type="PackedScene" uid="uid://b771u07n0kx3y" path="res://hud.tscn" id="5_2a7xy"]
-[ext_resource type="PackedScene" uid="uid://dbrlcra60q865" path="res://mob_blue_bee.tscn" id="5_lqi2t"]
+[ext_resource type="PackedScene" uid="uid://dbrlcra60q865" path="res://mobs/mob_blue_bee.tscn" id="5_lqi2t"]
 [ext_resource type="AudioStream" uid="uid://c4nefvdgkxnjo" path="res://audio/music/Pixelland.mp3" id="6_lye85"]
-[ext_resource type="PackedScene" uid="uid://c4md7tdu0i5f3" path="res://mob_red_crawler.tscn" id="6_ulfj5"]
-[ext_resource type="PackedScene" uid="uid://cvar8vxwoqbgh" path="res://mob_yellow_bee.tscn" id="7_sb161"]
+[ext_resource type="PackedScene" uid="uid://c4md7tdu0i5f3" path="res://mobs/mob_red_crawler.tscn" id="6_ulfj5"]
+[ext_resource type="PackedScene" uid="uid://cvar8vxwoqbgh" path="res://mobs/mob_yellow_bee.tscn" id="7_sb161"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_23fyh")

@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvar8vxwoqbgh"]
+
+[ext_resource type="PackedScene" uid="uid://0h44m27xx7pv" path="res://mobs/mob.tscn" id="1_ytw3a"]
+[ext_resource type="Script" path="res://mobs/mob_yellow_bee.gd" id="2_r83j1"]
+[ext_resource type="Texture2D" uid="uid://cvgbk0l7fma7i" path="res://art/Tilemap/tilemap.png" id="2_v52mc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_11dlw"]
+size = Vector2(12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43kyb"]
+atlas = ExtResource("2_v52mc")
+region = Rect2(17, 85, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt7gs"]
+atlas = ExtResource("2_v52mc")
+region = Rect2(34, 85, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bbd2s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43kyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pt7gs")
+}],
+"loop": true,
+"name": &"move",
+"speed": 10.0
+}]
+
+[node name="MobYellowBee" instance=ExtResource("1_ytw3a")]
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("2_r83j1")
+speed = 20
+hit_points = 1
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 0)
+shape = SubResource("RectangleShape2D_11dlw")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_bbd2s")
+animation = &"move"
+frame_progress = 0.636007
+
+[node name="MovementTimer" parent="." index="2"]
+wait_time = 1.0
+
+[connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]

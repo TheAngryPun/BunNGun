@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://0h44m27xx7pv"]
+
+[ext_resource type="Script" path="res://mobs/mob.gd" id="1_7yse4"]
+[ext_resource type="Texture2D" uid="uid://cvgbk0l7fma7i" path="res://art/Tilemap/tilemap.png" id="1_ffucw"]
+[ext_resource type="AudioStream" uid="uid://dt5pu5h01khv4" path="res://audio/kenney_sci-fi-sounds/impactMetal_004.ogg" id="3_4kwga"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ddxvd"]
+size = Vector2(16, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tnwf"]
+atlas = ExtResource("1_ffucw")
+region = Rect2(102, 51, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu7wc"]
+atlas = ExtResource("1_ffucw")
+region = Rect2(119, 51, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wvu3h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tnwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu7wc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Mob" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_7yse4")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.38419e-07, 3)
+shape = SubResource("RectangleShape2D_ddxvd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wvu3h")
+
+[node name="MovementTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="DestroyedSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4kwga")
+pitch_scale = 2.0
