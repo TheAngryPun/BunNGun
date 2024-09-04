@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://0gmftdeob7de"]
+
+[ext_resource type="PackedScene" uid="uid://mcuvsm2hnpvs" path="res://stage.tscn" id="1_2ia3t"]
+[ext_resource type="Script" path="res://main.gd" id="1_23fyh"]
+[ext_resource type="PackedScene" uid="uid://0h44m27xx7pv" path="res://mob.tscn" id="2_4xf8i"]
+[ext_resource type="PackedScene" uid="uid://dan2edpgt8kju" path="res://player.tscn" id="2_sjk5i"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_23fyh")
+mob_scene = ExtResource("2_4xf8i")
+
+[node name="Stage" parent="." instance=ExtResource("1_2ia3t")]
+
+[node name="Player" parent="." instance=ExtResource("2_sjk5i")]
+
+[node name="PlayerStartPos" type="Marker2D" parent="."]
+position = Vector2(32, 144)
+
+[node name="MobStartPos" type="Marker2D" parent="."]
+position = Vector2(216, 104)
+
+[node name="MobSpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="shoot" from="Player" to="." method="_on_player_shoot"]

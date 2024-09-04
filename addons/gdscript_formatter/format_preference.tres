@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dfaanydf7psu0"]
+
+[ext_resource type="Script" path="res://addons/gdscript_formatter/scripts/preference.gd" id="1_5c6fr"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_3u370"]
+alt_pressed = true
+shift_pressed = true
+pressed = true
+keycode = 70
+
+[sub_resource type="Shortcut" id="Shortcut_3jmqe"]
+events = [SubResource("InputEventKey_3u370")]
+
+[resource]
+script = ExtResource("1_5c6fr")
+line_length = 175
+format_on_save = false
+shortcut = SubResource("Shortcut_3jmqe")
+fast_but_unsafe = false
+gdformat_command = "C:\\Users\\girty\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\Scripts\\gdformat.exe"
+pip_command = "pip"

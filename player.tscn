@@ -1,0 +1,150 @@
+[gd_scene load_steps=16 format=3 uid="uid://dan2edpgt8kju"]
+
+[ext_resource type="Texture2D" uid="uid://cvgbk0l7fma7i" path="res://art/Tilemap/tilemap.png" id="1_reqrj"]
+[ext_resource type="Script" path="res://player.gd" id="1_sbiqt"]
+[ext_resource type="AudioStream" uid="uid://dq8modgr5vwgf" path="res://audio/kenney_sci-fi-sounds/laserSmall_001.ogg" id="3_nwydh"]
+[ext_resource type="AudioStream" uid="uid://dc85dbt2t2jw3" path="res://audio/kenney_digital-audio/phaseJump2.ogg" id="4_5glgl"]
+[ext_resource type="AudioStream" uid="uid://blm62kyjuobnf" path="res://audio/kenney_digital-audio/highUp.ogg" id="5_0ipc7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45x8i"]
+size = Vector2(14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv7c2"]
+atlas = ExtResource("1_reqrj")
+region = Rect2(0, 68, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asuyu"]
+atlas = ExtResource("1_reqrj")
+region = Rect2(17, 68, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5jfl"]
+atlas = ExtResource("1_reqrj")
+region = Rect2(0, 68, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ovdj"]
+atlas = ExtResource("1_reqrj")
+region = Rect2(17, 68, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q43q"]
+atlas = ExtResource("1_reqrj")
+region = Rect2(34, 68, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbjw7"]
+atlas = ExtResource("1_reqrj")
+region = Rect2(0, 68, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wjkmc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv7c2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asuyu")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5jfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ovdj")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6q43q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbjw7")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 20.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w83lp"]
+atlas = ExtResource("1_reqrj")
+region = Rect2(51, 68, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xmu6e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w83lp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_sbiqt")
+friction = 10
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_45x8i")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wjkmc")
+animation = &"idle"
+
+[node name="DamageFlashTimer" type="Timer" parent="PlayerSprite"]
+wait_time = 0.05
+
+[node name="MuzzleFlashSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xmu6e")
+
+[node name="MuzzleFlashDuration" type="Timer" parent="MuzzleFlashSprite"]
+wait_time = 0.05
+one_shot = true
+
+[node name="HitInvulTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="HitDisableTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="BulletSpawnPosition" type="Marker2D" parent="."]
+
+[node name="ShootSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_nwydh")
+
+[node name="JumpSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_5glgl")
+volume_db = -10.0
+
+[node name="DamageSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_0ipc7")
+pitch_scale = 1.5
+
+[node name="Camera2D" type="Camera2D" parent="."]
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_vertical_offset = -1.0
+drag_left_margin = 0.1
+drag_top_margin = 0.5
+drag_right_margin = 0.1
+drag_bottom_margin = 0.75
+
+[connection signal="timeout" from="PlayerSprite/DamageFlashTimer" to="." method="_on_damage_flash_timer_timeout"]
+[connection signal="timeout" from="MuzzleFlashSprite/MuzzleFlashDuration" to="." method="_on_muzzle_flash_duration_timeout"]
+[connection signal="timeout" from="HitInvulTimer" to="." method="_on_hit_invul_timer_timeout"]

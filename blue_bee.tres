@@ -1,0 +1,44 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://b3ssbrmdnxmo8"]
+
+[ext_resource type="Texture2D" uid="uid://cvgbk0l7fma7i" path="res://art/Tilemap/tilemap.png" id="1_k4coi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5wj1"]
+atlas = ExtResource("1_k4coi")
+region = Rect2(51, 85, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sa265"]
+atlas = ExtResource("1_k4coi")
+region = Rect2(68, 85, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gd6k"]
+atlas = ExtResource("1_k4coi")
+region = Rect2(51, 85, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg44e"]
+atlas = ExtResource("1_k4coi")
+region = Rect2(68, 85, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5wj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sa265")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gd6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fg44e")
+}],
+"loop": true,
+"name": &"move",
+"speed": 10.0
+}]

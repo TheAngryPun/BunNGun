@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2ufasq2jl8pv"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_1yukn"]
+[ext_resource type="Texture2D" uid="uid://cvgbk0l7fma7i" path="res://art/Tilemap/tilemap.png" id="1_rrp7t"]
+[ext_resource type="AudioStream" uid="uid://dt5pu5h01khv4" path="res://audio/kenney_sci-fi-sounds/impactMetal_004.ogg" id="3_1gf6f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y5h8h"]
+radius = 4.0
+height = 14.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn0st"]
+atlas = ExtResource("1_rrp7t")
+region = Rect2(68, 68, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nwwcl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn0st")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_1yukn")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="BulletShape" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_y5h8h")
+
+[node name="BulletSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nwwcl")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ImpactSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1gf6f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
